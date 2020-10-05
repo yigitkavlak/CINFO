@@ -49,6 +49,7 @@ public class FuelRecyclerAdapter extends RecyclerView.Adapter<FuelRecyclerAdapte
         holder.fuelCompanyText.setText("Yakıt Şirketi: " + userFuelPriceList.get(position));
         holder.gasolineDistanceText.setText("Aracın Km'si: " + userGasolineDistanceList.get(position) + " KM");
         holder.fuelDateText.setText("Yakıt Alım Tarihi: " + userFuelDateList.get(position));
+        holder.getAdapterPosition();
 
 
         Random rnd = new Random();

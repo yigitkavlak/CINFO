@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+    <ImageView
+        android:id="@+id/cinfoHomeImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="20dp"
+        >
+
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <RadioGroup
+            android:id="@+id/radioGasSelector"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/radioGasoline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:buttonTint="@color/darkOrange"
+                android:checked="true"
+                android:text="Benzin" />
+
+            <RadioButton
+                android:id="@+id/radioDiesel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:buttonTint="@color/darkOrange"
+                android:text="Dizel" />
+
+            <RadioButton
+                android:id="@+id/radioLPG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:buttonTint="@color/darkOrange"
+                android:text="LPG" />
+
+        </RadioGroup>
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/gasolineCompanySpinner"
+            android:layout_width="350dp"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_spinner"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:spinnerMode="dropdown"
+            app:hintText="Lütfen Benzin Şirketi Seçiniz..." />
+
+
+        <EditText
+            android:id="@+id/gasolinePrice"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/comfortaa_regular"
+
+            android:hint="Lütfen Tutar Giriniz."
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColorHint="@color/orange_3" />
+
+        <EditText
+            android:id="@+id/gasolineDistance"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:fontFamily="@font/comfortaa_regular"
+            android:hint="Lütfen Aracınızın Km'sini Giriniz.."
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColorHint="@color/orange_3" />
+
+        <Button
+            android:id="@+id/gasolineAddButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:onClick="addGasoline"
+            android:text="Benzin Ekle"
+            android:textColorHint="@color/orange_3"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_gravity="bottom|center"
+        android:background="@color/cinfoblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:itemBackground="@color/cinfoblue"
+        app:itemIconSize="26dp"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:menu="@menu/navigation" />
+
+
+</FrameLayout>

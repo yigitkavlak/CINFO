@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="35dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/recyclerview_user_fueltype"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:text="Yakıt Tipi"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recyclerview_user_fuelcompany"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:text="Yakıt Şirketi"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_user_fueltype" />
+
+    <TextView
+        android:id="@+id/recyclerview_user_fuelPrice"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:text="Yakıt Fiyatı"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_user_fuelcompany" />
+
+    <TextView
+        android:id="@+id/recyclerview_user_gasolineDistance"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:text="Araç Km"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_user_fuelPrice" />
+
+    <TextView
+        android:id="@+id/recyclerview_user_fueldate"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:text="Alım Tarihi"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_user_gasolineDistance" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

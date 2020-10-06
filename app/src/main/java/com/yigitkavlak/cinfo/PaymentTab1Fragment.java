@@ -59,12 +59,11 @@ public class PaymentTab1Fragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_payment_tab1,container,false);
+        View view = inflater.inflate(R.layout.fragment_payment_tab1, container, false);
 
         getUserID();
 
@@ -131,7 +130,7 @@ public class PaymentTab1Fragment extends Fragment {
                 Map<String, Object> paymentData = new HashMap<>();
 
                 paymentData.put("paymentType", paymentTypeName);
-                paymentData.put("paymentPrice",paymentPriceDatabase);
+                paymentData.put("paymentPrice", paymentPriceDatabase);
                 paymentData.put("date", FieldValue.serverTimestamp());
 
                 System.out.println(paymentTypeName);
@@ -141,14 +140,14 @@ public class PaymentTab1Fragment extends Fragment {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
 
-                                Toast.makeText(getContext(),"Kayıt Başarıyla Oluşturuldu",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Kayıt Başarıyla Oluşturuldu", Toast.LENGTH_SHORT).show();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
-                        Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -156,21 +155,12 @@ public class PaymentTab1Fragment extends Fragment {
         });
 
 
-
-
-
-
-
-
-
-
-
         return view;
 
 
     }
 
-    public void getPaymentSelector(){
+    public void getPaymentSelector() {
 
         paymentType = paymentSelector.getCheckedRadioButtonId();
         System.out.println(paymentType);
@@ -191,7 +181,7 @@ public class PaymentTab1Fragment extends Fragment {
         }
     }
 
-    public void getUserID(){
+    public void getUserID() {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         currentUserUid = currentUser.getUid();

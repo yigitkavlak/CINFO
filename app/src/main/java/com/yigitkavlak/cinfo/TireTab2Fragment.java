@@ -50,7 +50,6 @@ public class TireTab2Fragment extends Fragment {
     private RecyclerView recyclerViewTire;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +61,6 @@ public class TireTab2Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tire_tab2, container, false);
-
-
 
 
         firebaseStorage = FirebaseStorage.getInstance();
@@ -85,13 +82,10 @@ public class TireTab2Fragment extends Fragment {
         recyclerViewTire.setAdapter(tireRecyclerAdapter);
 
 
-
-
-
         return view;
     }
 
-    public void getDataFromFirestore(){
+    public void getDataFromFirestore() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         currentUserUid = currentUser.getUid();
 
@@ -103,27 +97,25 @@ public class TireTab2Fragment extends Fragment {
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!= null){
-                            Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                        if (e != null) {
+                            Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        if(queryDocumentSnapshots != null){
+                        if (queryDocumentSnapshots != null) {
 
-                            for  (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()){
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
-                                Map<String,Object> tireData = snapshot.getData();
+                                Map<String, Object> tireData = snapshot.getData();
 
                                 String tireType = (String) tireData.get("tireType");
                                 String tirePrice = (String) tireData.get("tirePrice");
                                 String tireDistance = (String) tireData.get("tireDistance");
-                                Date date = (Date) tireData.get("date") ;
+                                Date date = (Date) tireData.get("date");
 
 
-                               userTireTypeFDB.add(tireType);
-                               userTirePriceFDB.add(tirePrice);
-                               userTireDistanceFDB.add(tireDistance);
-                               userTireDateFDB.add(date);
-
-
+                                userTireTypeFDB.add(tireType);
+                                userTirePriceFDB.add(tirePrice);
+                                userTireDistanceFDB.add(tireDistance);
+                                userTireDateFDB.add(date);
 
 
                                 tireRecyclerAdapter.notifyDataSetChanged();

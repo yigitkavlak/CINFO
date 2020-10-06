@@ -14,15 +14,16 @@ public class FuelFragment extends Fragment {
     public FuelFragment() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        View view=inflater.inflate(R.layout.fragment_fuel,container,false);
+        View view = inflater.inflate(R.layout.fragment_fuel, container, false);
 
 
-        final ViewPager viewPager=(ViewPager)view.findViewById(R.id.view_pager);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         final TabLayout tabs;
 

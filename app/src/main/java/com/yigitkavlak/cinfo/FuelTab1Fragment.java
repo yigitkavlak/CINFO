@@ -70,7 +70,6 @@ public class FuelTab1Fragment extends Fragment {
     private FirebaseAuth firebaseAuth;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,16 +83,14 @@ public class FuelTab1Fragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-
-
         gasSelector = view.findViewById(R.id.radioGasSelector);
         gasoline = view.findViewById(R.id.radioGasoline);
         lpg = view.findViewById(R.id.radioLPG);
         diesel = view.findViewById(R.id.radioDiesel);
         gasolineCompanySpinner = view.findViewById(R.id.gasolineCompanySpinner);
-        cinfoHomeImage=view.findViewById(R.id.cinfoHomeImage);
+        cinfoHomeImage = view.findViewById(R.id.cinfoHomeImage);
         cinfoHomeImage.setImageResource(ic_cinfo);
-        gasolineAddButton=view.findViewById(R.id.gasolineAddButton);
+        gasolineAddButton = view.findViewById(R.id.gasolineAddButton);
         gasolinePrice = view.findViewById(R.id.gasolinePrice);
         gasolineDistance = view.findViewById(R.id.gasolineDistance);
 
@@ -107,19 +104,14 @@ public class FuelTab1Fragment extends Fragment {
         carList.add("Türkiye Petrolleri");
 
 
-
-
-        gasolineCompanySpinner.setAdapter(new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,carList));
+        gasolineCompanySpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, carList));
 
         gasolineCompanySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                {
+                if (position == 0) {
                     System.out.println("gg");           //Spinner 0 konumunda seçim yapılmadı
-                }
-                else
-                {
+                } else {
                     System.out.println("aa");           //Spinner 0 konumunda değil. Seçim yapıldı.
                 }
             }
@@ -150,12 +142,9 @@ public class FuelTab1Fragment extends Fragment {
         } */
 
 
-
-
-       gasolineAddButton.setOnClickListener(new View.OnClickListener() {
+        gasolineAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
 
                 fuelSelector();
@@ -170,25 +159,25 @@ public class FuelTab1Fragment extends Fragment {
                 fuelData.put("gasolineCompany", gasolineCompanyDatabase);
                 fuelData.put("gasolineDistance", gasolineDistanceDatabase);
                 fuelData.put("date", FieldValue.serverTimestamp());
-              // DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(currentUserUid);
+                // DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(currentUserUid);
 
-                 firebaseFirestore.collection("fuelData " + currentUserUid) //.document(currentUserUid)
+                firebaseFirestore.collection("fuelData " + currentUserUid) //.document(currentUserUid)
 
 
                         .add(fuelData)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
 
-                        Toast.makeText(getContext(),"Kayıt Başarıyla Oluşturuldu",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Kayıt Başarıyla Oluşturuldu", Toast.LENGTH_SHORT).show();
 
-                    }
-                })
+                            }
+                        })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
 
-                                Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                             }
                         });
@@ -201,13 +190,13 @@ public class FuelTab1Fragment extends Fragment {
         return view;
     }
 
-    public void getUserID(){
+    public void getUserID() {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-       currentUserUid = currentUser.getUid();
+        currentUserUid = currentUser.getUid();
     }
 
-    public void fuelSelector(){
+    public void fuelSelector() {
         gasolineType = gasSelector.getCheckedRadioButtonId();
         System.out.println(gasolineType);
 

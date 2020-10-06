@@ -50,7 +50,6 @@ public class PaymentTab2Fragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +59,7 @@ public class PaymentTab2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_payment_tab2,container,false);
+        View view = inflater.inflate(R.layout.fragment_payment_tab2, container, false);
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -73,19 +72,16 @@ public class PaymentTab2Fragment extends Fragment {
 
         getDataFromFirestore();
 
-       recyclerViewPayment = view.findViewById(R.id.recyclerViewPayment);
-       recyclerViewPayment.setLayoutManager(new LinearLayoutManager(getContext()));
-       paymentRecyclerAdapter = new PaymentRecyclerAdapter(userPaymentTypeDB, userPaymentPriceDB, userPaymentDateDB);
-       recyclerViewPayment.setAdapter(paymentRecyclerAdapter);
-
-
-
+        recyclerViewPayment = view.findViewById(R.id.recyclerViewPayment);
+        recyclerViewPayment.setLayoutManager(new LinearLayoutManager(getContext()));
+        paymentRecyclerAdapter = new PaymentRecyclerAdapter(userPaymentTypeDB, userPaymentPriceDB, userPaymentDateDB);
+        recyclerViewPayment.setAdapter(paymentRecyclerAdapter);
 
 
         return view;
     }
 
-    public void getDataFromFirestore(){
+    public void getDataFromFirestore() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         currentUserUid = currentUser.getUid();
 
@@ -97,19 +93,18 @@ public class PaymentTab2Fragment extends Fragment {
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!= null){
-                            Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                        if (e != null) {
+                            Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        if(queryDocumentSnapshots != null){
+                        if (queryDocumentSnapshots != null) {
 
-                            for  (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()){
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
-                                Map<String,Object> paymentData = snapshot.getData();
+                                Map<String, Object> paymentData = snapshot.getData();
 
                                 String paymentType = (String) paymentData.get("paymentType");
                                 String paymentPrice = (String) paymentData.get("paymentPrice");
-                                Date date = (Date) paymentData.get("date") ;
-
+                                Date date = (Date) paymentData.get("date");
 
 
                                 userPaymentTypeDB.add(paymentType);
@@ -117,9 +112,7 @@ public class PaymentTab2Fragment extends Fragment {
                                 userPaymentDateDB.add(date);
 
 
-
-
-                               paymentRecyclerAdapter.notifyDataSetChanged();
+                                paymentRecyclerAdapter.notifyDataSetChanged();
 
 
                             }

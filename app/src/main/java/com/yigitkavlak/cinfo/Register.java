@@ -87,17 +87,14 @@ public class Register extends AppCompatActivity {
         carList.add("Citroen");
         carList.add("Chevrolet");
 
-        carSpinner.setAdapter(new ArrayAdapter<>(Register.this,android.R.layout.simple_spinner_dropdown_item,carList));
+        carSpinner.setAdapter(new ArrayAdapter<>(Register.this, android.R.layout.simple_spinner_dropdown_item, carList));
 
         carSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                {
+                if (position == 0) {
                     System.out.println("gg");           //Spinner 0 konumunda seçim yapılmadı
-                }
-                else
-                {
+                } else {
                     System.out.println("aa");           //Spinner 0 konumunda değil. Seçim yapıldı.
                 }
             }
@@ -108,7 +105,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        if(fAuth.getCurrentUser() !=  null){
+        if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -121,16 +118,16 @@ public class Register extends AppCompatActivity {
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
 
                     mEmail.setError("E-mail kısmı boş bırakılamaz!");
                     return;
                 }
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Şifre kısmı boş bırakılamaz!");
                     return;
                 }
-                if(password.length() < 8 ){
+                if (password.length() < 8) {
 
                     mPassword.setError("Şifre kısmı 8 karakterden küçük olamaz!");
                     return;
@@ -139,23 +136,23 @@ public class Register extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 //kullanıcıyı firebase'e kaydetme
 
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             //kullanıcının emailini onaylamak için mail gönder
                             FirebaseUser user = fAuth.getCurrentUser();
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Register.this,"Onay Maili Gönderildi.Lütfen Gelen Kutunu Kontrol Et.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Register.this, "Onay Maili Gönderildi.Lütfen Gelen Kutunu Kontrol Et.", Toast.LENGTH_SHORT).show();
                                     userID = fAuth.getCurrentUser().getUid();
 
                                     DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);
 
                                     HashMap<String, Object> userData = new HashMap<>();
 
-                                    userData.put("eMail",email);
+                                    userData.put("eMail", email);
                                     userData.put("userName", userNameDatabase);
                                     userData.put("carModel", userCarModelDatabase);
                                     userData.put("date", FieldValue.serverTimestamp());
@@ -175,8 +172,6 @@ public class Register extends AppCompatActivity {
                                     });
 
 
-
-
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -186,11 +181,10 @@ public class Register extends AppCompatActivity {
                             });
 
 
-
                             Toast.makeText(Register.this, "Kullanıcı başarıyla oluşturuldu.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }else  {
-                                Toast.makeText(Register.this, "HATALI DENEME!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Register.this, "HATALI DENEME!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -208,8 +202,6 @@ public class Register extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
-
-
 
 
     }

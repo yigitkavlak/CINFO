@@ -50,16 +50,16 @@ public class Login extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
 
                     mEmail.setError("Email kısmı boş bırakılamaz!");
                     return;
                 }
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Password kısmı boş bırakılamaz!");
                     return;
                 }
-                if(password.length() < 8 ){
+                if (password.length() < 8) {
 
                     mPassword.setError("Password kısmı 8 karakterden küçük olamaz!");
                     return;
@@ -69,17 +69,17 @@ public class Login extends AppCompatActivity {
 
                 //kullanıcı girişi ve kontrolü
 
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                      if(task.isSuccessful()){
-                          Toast.makeText(Login.this, "Giriş Başarılı", Toast.LENGTH_SHORT).show();
-                          startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                      }else{
-                          Toast.makeText(Login.this, "HATALI DENEME" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                          progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login.this, "Giriş Başarılı", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            Toast.makeText(Login.this, "HATALI DENEME" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
 
-                      }
+                        }
 
                     }
                 });
@@ -102,34 +102,34 @@ public class Login extends AppCompatActivity {
                 passwordResetDialog.setMessage("Şifrenizi sıfırlamak için Email adresinizi giriniz.");
                 passwordResetDialog.setView(resetMail);
 
-                 passwordResetDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
-                     @Override
-                     public void onClick(DialogInterface dialogInterface, int i) {
-                     //emaili al ve reset linki gönder
+                passwordResetDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //emaili al ve reset linki gönder
                         String mail = resetMail.getText().toString();
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(Login.this,"Şifre sıfırlama maili gönderildi.Lütfen mailini kontrol et.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Şifre sıfırlama maili gönderildi.Lütfen mailini kontrol et.", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Login.this,"Şifre sıfırlama maili gönderilmedi."+ e.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Şifre sıfırlama maili gönderilmedi." + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
-                     }
-                 });
+                    }
+                });
 
-                 passwordResetDialog.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
-                     @Override
-                     public void onClick(DialogInterface dialogInterface, int i) {
-                         // diyalogu kapa ve logine tekrar gönder
-                     }
-                 });
+                passwordResetDialog.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // diyalogu kapa ve logine tekrar gönder
+                    }
+                });
 
-                 passwordResetDialog.create().show();
+                passwordResetDialog.create().show();
             }
         });
     }

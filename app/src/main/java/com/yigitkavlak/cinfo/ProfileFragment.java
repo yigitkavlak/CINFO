@@ -1,4 +1,5 @@
 package com.yigitkavlak.cinfo;
+
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 
@@ -43,7 +44,6 @@ public class ProfileFragment extends Fragment {
     TextView dateText;
 
 
-
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -53,9 +53,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       ViewGroup viewGroup= (ViewGroup) inflater.inflate(R.layout.fragment_profile,container,false);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
 
-       // userNameFromDB = new ArrayList<>();
+        // userNameFromDB = new ArrayList<>();
         //init firebase
         firebaseAuth = FirebaseAuth.getInstance(); //Initiliaze
         firebaseFirestore = FirebaseFirestore.getInstance(); //Initiliaze
@@ -64,9 +64,8 @@ public class ProfileFragment extends Fragment {
         userID = firebaseAuth.getCurrentUser().getUid();
 
 
-
         userCarModel = viewGroup.findViewById(R.id.carModelText);
-        textView =viewGroup.findViewById(R.id.userNameText);
+        textView = viewGroup.findViewById(R.id.userNameText);
         lastFuelData = viewGroup.findViewById(R.id.lastFuelData);
         dateText = viewGroup.findViewById(R.id.dateText);
 
@@ -85,9 +84,7 @@ public class ProfileFragment extends Fragment {
         });
 
 
-
-
-       // getDataFromFireStore();
+        // getDataFromFireStore();
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_profile, container, false);
         return viewGroup;

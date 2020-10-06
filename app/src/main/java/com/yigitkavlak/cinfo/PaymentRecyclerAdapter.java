@@ -40,7 +40,7 @@ public class PaymentRecyclerAdapter extends RecyclerView.Adapter<PaymentRecycler
     public void onBindViewHolder(@NonNull PaymentHolder holder, int position) {
 
         holder.paymentTypeText.setText("Ödeme Tipi: " + userPaymentTypeList.get(position));
-        holder.paymentPriceText.setText("Ödeme Miktarı: " + userPaymentPriceList.get(position) +" TL" );
+        holder.paymentPriceText.setText("Ödeme Miktarı: " + userPaymentPriceList.get(position) + " TL");
         holder.paymentDateText.setText("Ödeme Tarihi" + userPaymentDateList.get(position));
 
 
@@ -58,7 +58,7 @@ public class PaymentRecyclerAdapter extends RecyclerView.Adapter<PaymentRecycler
         return userPaymentDateList.size();
     }
 
-    class PaymentHolder extends RecyclerView.ViewHolder{
+    class PaymentHolder extends RecyclerView.ViewHolder {
 
         TextView paymentTypeText;
         TextView paymentPriceText;

@@ -1,5 +1,6 @@
 package com.yigitkavlak.cinfo;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +46,7 @@ public class FuelTab2Fragment extends Fragment {
     FuelRecyclerAdapter fuelRecyclerAdapter;
     private RecyclerView recyclerView;
     String currentUserUid;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -56,6 +60,15 @@ public class FuelTab2Fragment extends Fragment {
         storageReference = firebaseStorage.getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
+        swipeRefreshLayout = view.findViewById(R.id.fuelSwipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromFirestore();
+                fuelRecyclerAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         userFuelCompanyNameFromDB = new ArrayList<>();
         userFuelPriceFromDB = new ArrayList<>();
@@ -71,6 +84,9 @@ public class FuelTab2Fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         fuelRecyclerAdapter = new FuelRecyclerAdapter(userFuelTypeFromDB, userFuelCompanyNameFromDB, userFuelPriceFromDB, userGasolineDistanceFromDB, userFuelDateFromDB);
         recyclerView.setAdapter(fuelRecyclerAdapter);
+
+
+
 
         return view;
     }
@@ -111,9 +127,7 @@ public class FuelTab2Fragment extends Fragment {
                        userFuelDateFromDB.add(date);
 
 
-
-
-                      fuelRecyclerAdapter.notifyDataSetChanged();
+                       fuelRecyclerAdapter.notifyDataSetChanged();
 
 
                     }
@@ -121,5 +135,7 @@ public class FuelTab2Fragment extends Fragment {
             }
         });
     }
+
+
 }
 

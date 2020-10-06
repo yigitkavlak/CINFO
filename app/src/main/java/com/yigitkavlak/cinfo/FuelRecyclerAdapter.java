@@ -37,7 +37,7 @@ public class FuelRecyclerAdapter extends RecyclerView.Adapter<FuelRecyclerAdapte
     public FuelHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.recycler_fuel,parent, false);
+        View view = layoutInflater.inflate(R.layout.recycler_fuel, parent, false);
         return new FuelHolder(view);
 
     }
@@ -45,7 +45,7 @@ public class FuelRecyclerAdapter extends RecyclerView.Adapter<FuelRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull FuelHolder holder, int position) {
         holder.fuelTypeText.setText("Yakıt Tipi: " + userFuelTypeList.get(position));
-        holder.fuelPriceText.setText("Yakıt Ücreti: "  +userFuelCompanyNameList.get(position) + " TL");
+        holder.fuelPriceText.setText("Yakıt Ücreti: " + userFuelCompanyNameList.get(position) + " TL");
         holder.fuelCompanyText.setText("Yakıt Şirketi: " + userFuelPriceList.get(position));
         holder.gasolineDistanceText.setText("Aracın Km'si: " + userGasolineDistanceList.get(position) + " KM");
         holder.fuelDateText.setText("Yakıt Alım Tarihi: " + userFuelDateList.get(position));
@@ -66,14 +66,13 @@ public class FuelRecyclerAdapter extends RecyclerView.Adapter<FuelRecyclerAdapte
         return userFuelCompanyNameList.size();
     }
 
-    class FuelHolder extends RecyclerView.ViewHolder{
+    class FuelHolder extends RecyclerView.ViewHolder {
 
         TextView fuelTypeText;
         TextView fuelCompanyText;
         TextView fuelPriceText;
         TextView gasolineDistanceText;
         TextView fuelDateText;
-
 
 
         public FuelHolder(@NonNull View itemView) {

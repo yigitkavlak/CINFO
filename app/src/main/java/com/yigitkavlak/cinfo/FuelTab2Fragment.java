@@ -60,15 +60,7 @@ public class FuelTab2Fragment extends Fragment {
         storageReference = firebaseStorage.getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        swipeRefreshLayout = view.findViewById(R.id.fuelSwipeRefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getDataFromFirestore();
-                fuelRecyclerAdapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+
 
         userFuelCompanyNameFromDB = new ArrayList<>();
         userFuelPriceFromDB = new ArrayList<>();
@@ -84,15 +76,23 @@ public class FuelTab2Fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         fuelRecyclerAdapter = new FuelRecyclerAdapter(userFuelTypeFromDB, userFuelCompanyNameFromDB, userFuelPriceFromDB, userGasolineDistanceFromDB, userFuelDateFromDB);
         recyclerView.setAdapter(fuelRecyclerAdapter);
-
-
+        
+        swipeRefreshLayout = view.findViewById(R.id.fuelSwipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromFirestore();
+                fuelRecyclerAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 
         return view;
     }
 
 
-    public void getDataFromFirestore(){
+    public void getDataFromFirestore() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         currentUserUid = currentUser.getUid();
 
@@ -102,38 +102,38 @@ public class FuelTab2Fragment extends Fragment {
         collectionReference
                 .orderBy("date", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if(e!= null){
-                    Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-                }
-                if(queryDocumentSnapshots != null){
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        if (queryDocumentSnapshots != null) {
 
-                   for  (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()){
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
-                        Map<String,Object> fuelData = snapshot.getData();
+                                Map<String, Object> fuelData = snapshot.getData();
 
-                        String fuelType = (String) fuelData.get("fuelType");
-                        String gasolineCompany = (String) fuelData.get("gasolineCompany");
-                        String fuelPrice = (String) fuelData.get("fuelPrice");
-                        String gasolineDistance = (String) fuelData.get("gasolineDistance");
-                        Date date = (Date) fuelData.get("date") ;
-
-
-                       userFuelTypeFromDB.add(fuelType);
-                       userFuelCompanyNameFromDB.add(gasolineCompany);
-                       userFuelPriceFromDB.add(fuelPrice);
-                       userGasolineDistanceFromDB.add(gasolineDistance);
-                       userFuelDateFromDB.add(date);
+                                String fuelType = (String) fuelData.get("fuelType");
+                                String gasolineCompany = (String) fuelData.get("gasolineCompany");
+                                String fuelPrice = (String) fuelData.get("fuelPrice");
+                                String gasolineDistance = (String) fuelData.get("gasolineDistance");
+                                Date date = (Date) fuelData.get("date");
 
 
-                       fuelRecyclerAdapter.notifyDataSetChanged();
+                                userFuelTypeFromDB.add(fuelType);
+                                userFuelCompanyNameFromDB.add(gasolineCompany);
+                                userFuelPriceFromDB.add(fuelPrice);
+                                userGasolineDistanceFromDB.add(gasolineDistance);
+                                userFuelDateFromDB.add(date);
 
 
+                                fuelRecyclerAdapter.notifyDataSetChanged();
+
+
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
     }
 
 

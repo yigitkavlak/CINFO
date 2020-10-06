@@ -4,11 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TireTab2Fragment">
-
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/tireSwipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTire"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </FrameLayout>

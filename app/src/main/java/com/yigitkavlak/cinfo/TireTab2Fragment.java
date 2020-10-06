@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ public class TireTab2Fragment extends Fragment {
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
     String currentUserUid;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     private TireRecyclerAdapter tireRecyclerAdapter;
@@ -80,7 +82,15 @@ public class TireTab2Fragment extends Fragment {
         recyclerViewTire.setLayoutManager(new LinearLayoutManager(getContext()));
         tireRecyclerAdapter = new TireRecyclerAdapter(userTireTypeFDB, userTirePriceFDB, userTireDistanceFDB, userTireDateFDB);
         recyclerViewTire.setAdapter(tireRecyclerAdapter);
-
+        swipeRefreshLayout = view.findViewById(R.id.tireSwipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromFirestore();
+                tireRecyclerAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         return view;
     }

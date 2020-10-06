@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class PaymentTab2Fragment extends Fragment {
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
     String currentUserUid;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private PaymentRecyclerAdapter paymentRecyclerAdapter;
     private RecyclerView recyclerViewPayment;
@@ -76,6 +78,16 @@ public class PaymentTab2Fragment extends Fragment {
         recyclerViewPayment.setLayoutManager(new LinearLayoutManager(getContext()));
         paymentRecyclerAdapter = new PaymentRecyclerAdapter(userPaymentTypeDB, userPaymentPriceDB, userPaymentDateDB);
         recyclerViewPayment.setAdapter(paymentRecyclerAdapter);
+
+        swipeRefreshLayout = view.findViewById(R.id.paymentSwipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromFirestore();
+                paymentRecyclerAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 
         return view;

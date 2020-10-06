@@ -1,6 +1,7 @@
 package com.yigitkavlak.cinfo;
 
 import android.graphics.drawable.shapes.OvalShape;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class ProfileFragment extends Fragment {
     TextView userCarModel;
     TextView lastFuelData;
     TextView dateText;
+    ImageView imageView;
 
 
     public ProfileFragment() {
@@ -68,6 +71,9 @@ public class ProfileFragment extends Fragment {
         textView = viewGroup.findViewById(R.id.userNameText);
         lastFuelData = viewGroup.findViewById(R.id.lastFuelData);
         dateText = viewGroup.findViewById(R.id.dateText);
+        imageView = viewGroup.findViewById(R.id.imageView);
+
+        imageView.setImageResource(R.drawable.ic_cinfo);
 
 
         DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);

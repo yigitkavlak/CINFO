@@ -20,45 +20,57 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="Hoşgeldiniz,"
             android:textColor="#000000"
-            android:fontFamily="@font/comfortaa_regular"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/userNameText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="userName"
             android:textColor="#000000"
-            android:fontFamily="@font/comfortaa_regular"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/lastFuelData"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="eMail"
             android:textColor="#000000"
-            android:fontFamily="@font/comfortaa_regular"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/carModelText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="carModel"
             android:textColor="#000000"
-            android:fontFamily="@font/comfortaa_regular"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dateText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:text="date"
             android:textColor="#000000"
-            android:fontFamily="@font/comfortaa_regular"/>
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
